@@ -4,6 +4,7 @@ import br.com.luroma.event.management.domain.Certificate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 class CertificateComponentImpl implements CertificateComponent {
@@ -15,11 +16,11 @@ class CertificateComponentImpl implements CertificateComponent {
 
     @Override
     public List<Certificate> getCertificates(String userId) {
-        return certificateRepository.findByUserId(userId);
+        return certificateRepository.findByUserId(userId).stream().map(CertificateEntity::toDomainModel).toList();
     }
 
     @Override
     public Certificate createCertificate(String userId, String eventId) {
-        return certificateRepository.save(new Certificate(userId, eventId));
+        return certificateRepository.save(new CertificateEntity(userId, eventId)).toDomainModel();
     }
 }

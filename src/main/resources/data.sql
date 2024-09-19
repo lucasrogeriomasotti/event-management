@@ -1,1 +1,0 @@
-INSERT INTO certificate (id, user_id, event_id) VALUES ('c4452023-2265-4de5-9358-b105af08d2e8', '9493376c-0183-4973-ad0b-6a36d66921b6', 'a78cecfa-2dfa-48b7-a5fb-111c0ef50c86');

@@ -1,5 +1,6 @@
 package br.com.luroma.event.management.web;
 
+
 import br.com.luroma.event.management.component.certificate.CertificateComponent;
 import br.com.luroma.event.management.domain.Certificate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,6 @@ public class CertificatesController {
 
     @PostMapping("/certificates")
     public Certificate create(@RequestBody CreateCertificateRequest request) {
-        return certificateComponent.createCertificate(request.getUserId(), request.getEventId());
+        return certificateComponent.createCertificate(request.userId(), request.eventId());
     }
 }

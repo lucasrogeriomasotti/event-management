@@ -20,7 +20,7 @@ class EventEntity {
     @Column(name = "user_id")
     private Set<String> participants;
 
-    public static EventEntity fromModel(Event event) {
+    public static EventEntity fromDomainModel(Event event) {
         EventEntity eventEntity = new EventEntity();
         eventEntity.setId(event.getId());
         eventEntity.setName(event.getName());

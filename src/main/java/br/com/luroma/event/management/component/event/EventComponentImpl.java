@@ -1,10 +1,12 @@
 package br.com.luroma.event.management.component.event;
 
 import br.com.luroma.event.management.domain.Event;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+@Component
 class EventComponentImpl implements EventComponent{
     private final EventRepository eventRepository;
 
@@ -14,12 +16,13 @@ class EventComponentImpl implements EventComponent{
 
     @Override
     public Event createEvent(Event event) {
-        return eventRepository.save(EventEntity.fromModel(event)).toDomainModel();
+        return eventRepository.save(EventEntity.fromDomainModel(event)).toDomainModel();
     }
 
     @Override
     public List<Event> getEvents() {
-        return StreamSupport.stream(eventRepository.findAll().spliterator(), true).map(EventEntity::toDomainModel).toList();
+        return StreamSupport.stream(eventRepository.findAll().spliterator(), true)
+                .map(EventEntity::toDomainModel).toList();
     }
 
     @Override

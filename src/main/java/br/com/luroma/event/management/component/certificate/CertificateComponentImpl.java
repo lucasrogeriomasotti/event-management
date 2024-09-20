@@ -1,5 +1,6 @@
 package br.com.luroma.event.management.component.certificate;
 
+import br.com.luroma.event.management.component.notification.NotificationComponent;
 import br.com.luroma.event.management.domain.Certificate;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +10,11 @@ import java.util.stream.Collectors;
 @Component
 class CertificateComponentImpl implements CertificateComponent {
     private final CertificateRepository certificateRepository;
+    private final NotificationComponent notificationComponent;
 
-    public CertificateComponentImpl(CertificateRepository certificateRepository) {
+    public CertificateComponentImpl(CertificateRepository certificateRepository, NotificationComponent notificationComponent) {
         this.certificateRepository = certificateRepository;
+        this.notificationComponent = notificationComponent;
     }
 
     @Override
@@ -21,6 +24,10 @@ class CertificateComponentImpl implements CertificateComponent {
 
     @Override
     public Certificate createCertificate(String userId, String eventId) {
-        return certificateRepository.save(new CertificateEntity(userId, eventId)).toDomainModel();
+        //TODO Validate existence of user and event
+
+        Certificate certificate = certificateRepository.save(new CertificateEntity(userId, eventId)).toDomainModel();
+        notificationComponent.notifyCertificateCreated(userId, eventId);
+        return certificate;
     }
 }

@@ -1,5 +1,7 @@
 package br.com.luroma.event.management.domain;
 
+import java.util.Objects;
+
 public class Certificate {
     private String id;
     private String userId;
@@ -33,5 +35,19 @@ public class Certificate {
 
     public void setEventId(String eventId) {
         this.eventId = eventId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Certificate that = (Certificate) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

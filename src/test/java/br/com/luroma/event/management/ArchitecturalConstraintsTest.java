@@ -7,7 +7,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 @AnalyzeClasses(packages = "br.com.luroma.event.management")
-public class EnforceControllersTest {
+class ArchitecturalConstraintsTest {
 
     @ArchTest
     public static final ArchRule controllersShouldBeOnWebPackage =  classes()

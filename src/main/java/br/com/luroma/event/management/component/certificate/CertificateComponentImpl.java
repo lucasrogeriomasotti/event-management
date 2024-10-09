@@ -5,7 +5,6 @@ import br.com.luroma.event.management.domain.Certificate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 class CertificateComponentImpl implements CertificateComponent {
